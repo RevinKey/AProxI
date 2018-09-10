@@ -1,0 +1,53 @@
+<h1>{{title}}</h1>
+<form class="apiForm">
+  <div class="row">
+    <div class="six columns">
+      <label for="endpoint">API endpoint</label>
+      <input class="u-full-width" type="endpoint" placeholder="test.com/api" id="endpoint">
+    </div>
+    <div class="six columns">
+      <label for="method">HTTP Method</label>
+      <select class="u-full-width" id="method">
+                <option value="GET">GET</option>
+                <option value="POST">POST</option>
+                <option value="PATCH">PATCH</option>
+              </select>
+    </div>
+  </div>
+  <label for="body">Body Object</label>
+  <textarea class="u-full-width" placeholder="{}" id="body"></textarea>
+
+  <input class="button-primary" type="submit" value="Submit" id="formSubmit">
+</form>
+<div class="response">
+
+</div>
+<script type="text/javascript">
+  let form = document.getElementsByClassName('apiForm')[0];
+  let formSubmit = document.getElementById('formSubmit');
+
+  formSubmit.addEventListener('click', function(e) {
+    e.preventDefault();
+    let body = {
+      apiEndpoint: form.elements.endpoint.value,
+      method: form.elements.method.value,
+      callBody: form.elements.body.value
+    }
+    console.log(body);
+    fetch('/', {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }).then(response => {
+        return response.json();
+      })
+      .then(function(data) {
+        // `data` is the parsed version of the JSON returned from the above endpoint.
+        console.log(data); // checking purposes
+        document.getElementsByClassName('response')[0].innerText = JSON.stringify(data);
+      });
+  })
+</script>

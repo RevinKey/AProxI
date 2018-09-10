@@ -1,0 +1,17 @@
+#######
+# OSX #
+#######
+.DS_Store
+
+########
+# IDEs #
+########
+.idea
+*.iml
+
+#################
+# Project Files #
+#################
+/node_modules
+*.pid
+npm-debug.log
