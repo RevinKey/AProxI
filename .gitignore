@@ -12,6 +12,6 @@
 #################
 # Project Files #
 #################
-/node_modules
+node_modules
 *.pid
 npm-debug.log
